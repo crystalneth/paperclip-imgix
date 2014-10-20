@@ -18,6 +18,10 @@ module Paperclip::Imgix
       end
     end
 
+    def self.plural_cache
+      @plural_cache ||= Paperclip::Interpolations::PluralCache.new
+    end
+
     RIGHT_HERE = "#{__FILE__.gsub(%r{^\./}, "")}:#{__LINE__ + 3}"
     def url attachment, style_name
       raise Paperclip::Errors::InfiniteInterpolationError if caller.any?{|b| b.index(RIGHT_HERE) }
